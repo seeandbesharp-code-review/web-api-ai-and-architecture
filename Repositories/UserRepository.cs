@@ -13,7 +13,7 @@ namespace Repositories
         }
         public async Task<IEnumerable<User>?> GetAllAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Take(100).ToListAsync();
         }
         public async Task<User?> GetByIdAsync(int id)
         {
@@ -52,6 +52,7 @@ namespace Repositories
                 .Include(o => o.BasicSite)
                     .ThenInclude(bs => bs.SiteType)
                 .Include(o => o.Reviews)
+                .Take(100)
                 .ToListAsync();
         }
 

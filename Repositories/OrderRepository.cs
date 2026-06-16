@@ -48,6 +48,7 @@ namespace Repositories
                     .ThenInclude(oi => oi.Platform)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Prompt)
+                .Take(100) // B4: pagination safety limit
                 .ToListAsync();
         }
 
